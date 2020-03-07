@@ -31,7 +31,8 @@ function App() {
       <h1>Hi, I am a React App</h1>
       <button onClick={switchNameHandler}>Switch name button</button>
       {personsState.persons.map((person, index) => (
-        <Person key={index} name={person.name} age={person.age} >My hobby is: {person.hobby} </Person>
+        // <Person key={index} name={person.name} age={person.age} click={() => switchNameHandler()}>My hobby is: {person.hobby} </Person>
+        <Person key={index} name={person.name} age={person.age} click={ switchNameHandler }>My hobby is: {person.hobby} </Person>
       ))}
     </div>
   )
