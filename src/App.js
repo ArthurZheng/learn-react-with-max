@@ -15,13 +15,13 @@ function App() {
     }
   )
 
-  const switchNameHandler = () => {
+  const switchNameHandler = (newName) => {
       console.log("Inside switchNameHandler, button was clicked");
       setPersonsState({
         persons: [
-          {name: 'Alexima', age: 88, hobby: 'watching movie'},
-          {name: 'Brod', age: 27, hobby: 'gong fishing'},
-          {name: 'Maruooo', age: 99, hobby: 'cycling'},
+          {name: newName, age: 88, hobby: 'watching movie'},
+          {name: newName, age: 27, hobby: 'gong fishing'},
+          {name: newName, age: 99, hobby: 'cycling'},
         ]
       })
     }
@@ -32,7 +32,8 @@ function App() {
       <button onClick={switchNameHandler}>Switch name button</button>
       {personsState.persons.map((person, index) => (
         // <Person key={index} name={person.name} age={person.age} click={() => switchNameHandler()}>My hobby is: {person.hobby} </Person>
-        <Person key={index} name={person.name} age={person.age} click={ switchNameHandler }>My hobby is: {person.hobby} </Person>
+        // <Person key={index} name={person.name} age={person.age} click={ switchNameHandler.bind(this, 'BooHoo!!') }>My hobby is: {person.hobby} </Person>
+        <Person key={index} name={person.name} age={person.age} click={ (event) => switchNameHandler('Wooba!') }>My hobby is: {person.hobby} </Person>
       ))}
     </div>
   )
