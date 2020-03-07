@@ -12,14 +12,19 @@ class App extends Component {
     ]
   }
 
+  switchNameHandler = () => {
+    console.log("was clicked");
+  }
+
   render(){
     return(
       <div className="App">
-      <h1>Hi, I am a React App</h1>
-      {this.state.persons.map(person => (
-        <Person name={person.name} age={person.age} >My hobby is: {person.hobby} </Person>
-      ))}
-  </div>
+        <h1>Hi, I am a React App</h1>
+        <button onClick={this.switchNameHandler}>Switch name button</button>
+        {this.state.persons.map((person, index) => (
+          <Person key={index} name={person.name} age={person.age} >My hobby is: {person.hobby} </Person>
+        ))}
+      </div>
     )
   }
 }
