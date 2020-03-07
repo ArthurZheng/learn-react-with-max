@@ -9,11 +9,19 @@ class App extends Component {
       {name: 'Alex', age: 28, hobby: 'watching movie'},
       {name: 'Bro', age: 12, hobby: 'gong fishing'},
       {name: 'Maru', age: 89, hobby: 'cycling'},
-    ]
+    ],
+    isSold: false,
   }
 
   switchNameHandler = () => {
-    console.log("was clicked");
+    console.log("Inside switchNameHandler, button was clicked");
+    this.setState({
+      persons: [
+        {name: 'Alexima', age: 88, hobby: 'watching movie'},
+        {name: 'Brod', age: 27, hobby: 'gong fishing'},
+        {name: 'Maruooo', age: 99, hobby: 'cycling'},
+      ]
+    })
   }
 
   render(){
