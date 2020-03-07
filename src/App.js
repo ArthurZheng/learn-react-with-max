@@ -4,13 +4,21 @@ import './App.css';
 import Person from './components/Person/Person';
 
 class App extends Component {
+  state = {
+    persons: [
+      {name: 'Alex', age: 28, hobby: 'watching movie'},
+      {name: 'Bro', age: 12, hobby: 'gong fishing'},
+      {name: 'Maru', age: 89, hobby: 'cycling'},
+    ]
+  }
+
   render(){
     return(
       <div className="App">
       <h1>Hi, I am a React App</h1>
-      <Person name='John' age='20'/>
-      <Person name='Rose' age='18'>My hobby is: watching TV soap operas.</Person>
-      <Person name='Gigi' age='3'/>
+      {this.state.persons.map(person => (
+        <Person name={person.name} age={person.age} >My hobby is: {person.hobby} </Person>
+      ))}
   </div>
     )
   }
