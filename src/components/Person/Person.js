@@ -1,14 +1,15 @@
 import React from 'react';
 
-import Aux from '../Aux/Aux';
+// import Aux from '../Aux/Aux';
+import './Person.css';
 
 const Person = ({name, age, click, children, nameChanged}) => (
-    <Aux>
+    <div className="Person">
         <button onClick={click}>Click to Change</button>
         <p>I am a person! My name is {name} and I am {age} years old.</p>
         <h2>{children}</h2>
         <input type="text" onChange={nameChanged} value={name} />
         <hr />
-    </Aux>
+    </div>
 )
 export default Person;
