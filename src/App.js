@@ -2,6 +2,7 @@ import React, {Component, useState} from 'react';
 import './App.css';
 
 import Person from './components/Person/Person';
+import UserOutput from './components/UserOutput/UserOutput';
 
 function App() {
   const [personsState, setPersonsState] = useState(
@@ -14,6 +15,8 @@ function App() {
       isSold: false,
     }
   )
+
+  const [userNameState, setUserNameState] = useState({userName: 'Jenny Smith'})
 
   const switchNameHandler = (newName) => {
       console.log("Inside switchNameHandler, button was clicked");
@@ -36,8 +39,23 @@ function App() {
         ]
       })
     }
+
+    const userNameChangeHandler = (event) => {
+      console.log("Inside userNameChangeHandler, paragraph clicked");
+      console.log("event.target.value", event.target.value);
+      setUserNameState({
+        // userName: '007 James Bond',
+        userName: event.target.value,
+      })
+    }
+
+    // const userInputHandler = (event) => {
+    //   console.log("Inside userInputHandler, paragraph clicked");
+      
+    // }
   return(
     <div className="App">
+      <UserOutput name="John Doe" userName={userNameState.userName} clicked={userNameChangeHandler}/>
       <h1>Hi, I am a React App</h1>
       <button onClick={switchNameHandler}>Switch name button</button>
       {personsState.persons.map((person, index) => (
