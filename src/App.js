@@ -26,6 +26,16 @@ function App() {
       })
     }
 
+    const nameChangeHandler =(event) => {
+      console.log("Inside nameChangeHandler, input changed");
+      setPersonsState({
+        persons: [
+          {name: event.target.value, age: 88, hobby: 'watching movie'},
+          {name: event.target.value, age: 27, hobby: 'gong fishing'},
+          {name: event.target.value, age: 99, hobby: 'cycling'},
+        ]
+      })
+    }
   return(
     <div className="App">
       <h1>Hi, I am a React App</h1>
@@ -34,7 +44,7 @@ function App() {
         // <Person key={index} name={person.name} age={person.age} click={() => switchNameHandler()}>My hobby is: {person.hobby} </Person>
         // <Person key={index} name={person.name} age={person.age} click={ switchNameHandler.bind(this, 'BooHoo!!') }>My hobby is: {person.hobby} </Person>
         // <Person key={index} name={person.name} age={person.age} click={ switchNameHandler }>My hobby is: {person.hobby} </Person> // the function will be passed as is if there's no args to pass around
-        <Person key={index} name={person.name} age={person.age} click={ (event) => switchNameHandler('Wooba!') }>My hobby is: {person.hobby} </Person>
+        <Person key={index} name={person.name} age={person.age} click={ (event) => switchNameHandler('Wooba!')} nameChanged={nameChangeHandler}>My hobby is: {person.hobby} </Person>
       ))}
     </div>
   )
