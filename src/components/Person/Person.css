@@ -1,6 +1,6 @@
 .Person {
     width: 60%;
-    margin: auto;
+    margin: 15px auto;
     border: 1px solid red;
     box-shadow: 0 2px 3px #cccccc;
     padding: 16px;
