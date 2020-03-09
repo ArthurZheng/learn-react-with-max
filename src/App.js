@@ -8,9 +8,9 @@ function App() {
   const [personsState, setPersonsState] = useState(
     {
       persons: [
-        {name: 'Alex', age: 28, hobby: 'watching movie'},
-        {name: 'Bro', age: 12, hobby: 'gong fishing'},
-        {name: 'Maru', age: 89, hobby: 'cycling'},
+        {id: 'p1', name: 'Alex', age: 28, hobby: 'watching movie'},
+        {id: 'p2', name: 'Bro', age: 12, hobby: 'gong fishing'},
+        {id: 'p3', name: 'Maru', age: 89, hobby: 'cycling'},
       ],
       isSold: false,
     }
@@ -30,14 +30,26 @@ function App() {
       })
     }
 
-    const nameChangeHandler =(event) => {
+    const nameChangeHandler =(event, id) => {
       console.log("Inside nameChangeHandler, input changed");
+      // find the person, update its name, clone the persons, update the person in persons, and then update personsState
+      console.log("personState", personsState)
+      const person = personsState.persons.find(p => p.id === id);
+      // const found = array1.find(element => element > 10);
+      const personIndex = personsState.persons.findIndex(p => {
+        return p.id === id;
+      });
+      person.name = event.target.value;
+      const newPersons = [...personsState.persons];
+      newPersons[personIndex] = person;
+      // newPersons[] = person;
       setPersonsState({
-        persons: [
-          {name: event.target.value, age: 88, hobby: 'watching movie'},
-          {name: event.target.value, age: 27, hobby: 'gong fishing'},
-          {name: event.target.value, age: 99, hobby: 'cycling'},
-        ]
+        // persons: [
+        //   {name: event.target.value, age: 88, hobby: 'watching movie'},
+        //   {name: event.target.value, age: 27, hobby: 'gong fishing'},
+        //   {name: event.target.value, age: 99, hobby: 'cycling'},
+        // ]
+        persons: newPersons,
       })
     }
 
@@ -85,11 +97,12 @@ function App() {
         // <Person key={index} name={person.name} age={person.age} click={ switchNameHandler.bind(this, 'BooHoo!!') }>My hobby is: {person.hobby} </Person>
         // <Person key={index} name={person.name} age={person.age} click={ switchNameHandler }>My hobby is: {person.hobby} </Person> // the function will be passed as is if there's no args to pass around
         <Person
-        key={index}
+        key={person.id}
         name={person.name}
         age={person.age}
         click={ (event) => switchNameHandler('Wooba!')}
-        nameChanged={nameChangeHandler}
+        nameChanged={ (event) => nameChangeHandler(event, person.id) }
+        // changed={(event) => this.nameChangedHandler(event, person.id)}
         deletePerson={deletePersonHandler.bind(this, index)}
         >My hobby is: {person.hobby} </Person>
       ))}
