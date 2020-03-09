@@ -63,6 +63,16 @@ function App() {
       })
     }
 
+    const deletePersonHandler = (index) => {
+      console.log("Inside deletePersonHandler");
+      // const newPersons = personsState.slice();
+      const newPersons = [...personsState.persons];
+      console.log("newPersons", newPersons);
+      newPersons.splice(index, 1);
+      setPersonsState({ persons: newPersons})
+
+    }
+
   return(
     <div className="App">
       <button onClick={toggleShowStateHandler}>Toggle Show Persons</button>
@@ -74,7 +84,14 @@ function App() {
         // <Person key={index} name={person.name} age={person.age} click={() => switchNameHandler()}>My hobby is: {person.hobby} </Person>
         // <Person key={index} name={person.name} age={person.age} click={ switchNameHandler.bind(this, 'BooHoo!!') }>My hobby is: {person.hobby} </Person>
         // <Person key={index} name={person.name} age={person.age} click={ switchNameHandler }>My hobby is: {person.hobby} </Person> // the function will be passed as is if there's no args to pass around
-        <Person key={index} name={person.name} age={person.age} click={ (event) => switchNameHandler('Wooba!')} nameChanged={nameChangeHandler}>My hobby is: {person.hobby} </Person>
+        <Person
+        key={index}
+        name={person.name}
+        age={person.age}
+        click={ (event) => switchNameHandler('Wooba!')}
+        nameChanged={nameChangeHandler}
+        deletePerson={deletePersonHandler.bind(this, index)}
+        >My hobby is: {person.hobby} </Person>
       ))}
       </div>}
     </div>
