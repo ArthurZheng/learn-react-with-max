@@ -17,6 +17,7 @@ function App() {
   )
 
   const [userNameState, setUserNameState] = useState({userName: 'Jenny Smith'})
+  const [toggleShowState, setToggleShowState] = useState({show: false});
 
   const switchNameHandler = (newName) => {
       console.log("Inside switchNameHandler, button was clicked");
@@ -53,8 +54,19 @@ function App() {
     //   console.log("Inside userInputHandler, paragraph clicked");
       
     // }
+
+    const toggleShowStateHandler = (event) => {
+      console.log("Inside toggleShowStateHandler, paragraph clicked");
+      console.log("toggleShowState", toggleShowState);
+      setToggleShowState({
+        show: !toggleShowState.show
+      })
+    }
+
   return(
     <div className="App">
+      <button onClick={toggleShowStateHandler}>Toggle Show Persons</button>
+      {toggleShowState.show && <div>
       <UserOutput name="John Doe" userName={userNameState.userName} clicked={userNameChangeHandler}/>
       <h1>Hi, I am a React App</h1>
       <button onClick={switchNameHandler}>Switch name button</button>
@@ -64,6 +76,7 @@ function App() {
         // <Person key={index} name={person.name} age={person.age} click={ switchNameHandler }>My hobby is: {person.hobby} </Person> // the function will be passed as is if there's no args to pass around
         <Person key={index} name={person.name} age={person.age} click={ (event) => switchNameHandler('Wooba!')} nameChanged={nameChangeHandler}>My hobby is: {person.hobby} </Person>
       ))}
+      </div>}
     </div>
   )
 }
